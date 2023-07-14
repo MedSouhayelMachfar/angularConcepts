@@ -1,1 +1,35 @@
-<p>add-product works!</p>
+<form (ngSubmit)="addProduct()" #f="ngForm">
+    <div class="form-group">
+        <div class="form-label">
+            Name
+        </div>
+        <input type="text" name="name" class="form-control" [(ngModel)]="product.title" #title="ngModel" required minlength="5">
+        <div class="alert alert-danger" *ngIf="title.invalid && title.touched">
+            <div *ngIf="title.errors?.['required']">Title is required !</div>
+            <div *ngIf="title.errors?.['minlength']">Title must have at least 5 characters !</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">
+            Quantity
+        </div>
+        <input type="number" name="quantity" class="form-control" [(ngModel)]="product.quantity" #quantity="ngModel" required min="0">
+        <div class="alert alert-danger" *ngIf="quantity.invalid && quantity.touched">
+            <div *ngIf="quantity.errors?.['required']">Quantity is required !</div>
+            <div *ngIf="quantity.errors?.['min']">Quantity can't be negative !</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">
+            Price
+        </div>
+        <input type="number" name="price" class="form-control" [(ngModel)]="product.price" #price="ngModel" required min="0">
+        <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+            <div *ngIf="price.errors?.['required']">Price is required !</div>
+            <div *ngIf="price.errors?.['min']">Price can't be negative!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Ajouter" class="btn btn-primary" [disabled]="f.invalid">
+    </div>
+</form>

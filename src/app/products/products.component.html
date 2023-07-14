@@ -1,53 +1,59 @@
 <p>products works!</p>
 
-<form class="from-group">
-  <input
-    type="text"
-    placeholder="search..."
-    class="from-control"
-    name="price"
-    [(ngModel)]="prixMax"
-  />
-</form>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" *ngFor="let header of headers">
-        {{ header.label }}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let record of records">
-      <ng-container *ngIf="!prixMax || record.price < prixMax">
-        <td scope="row" *ngFor="let header of headers">
-          {{ record[header.key] }}
-        </td>
-        <td>
-          <button
-            type="button"
-            class="btn btn-success"
-            [disabled]="record.quantity === 0"
-            (click)="dec(record.id)"
-          >
-            Buy
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="inc(record.id)"
-          >
-            Like
-          </button>
-          <a
-            type="button"
-            class="btn btn-danger"
-            [routerLink]="['/details', record.id]"
-          >
-            Details
-          </a>
-        </td>
-      </ng-container>
-    </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="records.length">
+  <form class="from-group">
+    <input
+      type="text"
+      placeholder="search..."
+      class="from-control"
+      name="price"
+      [(ngModel)]="prixMax"
+    />
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let header of headers">
+          {{ header.label }}
+        </th>
+        <th>ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records">
+        <ng-container *ngIf="!prixMax || record.price < prixMax">
+          <td scope="row" *ngFor="let header of headers">
+            {{ record[header.key] }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              [disabled]="record.quantity === 0"
+              (click)="dec(record.id)"
+            >
+              Buy
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="inc(record.id)"
+            >
+              Like
+            </button>
+            <a
+              type="button"
+              class="btn btn-danger"
+              [routerLink]="['/details', record.id]"
+            >
+              Details
+            </a>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-container *ngIf="!records.length">
+  <p>No products found!</p>
+</ng-container>

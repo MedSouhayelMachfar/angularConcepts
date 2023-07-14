@@ -1,1 +1,15 @@
-<p>details works!</p>
+<ng-container *ngIf="product">
+    <div class="card">
+        <div class="card-body">
+            <h1>id      : {{product.id}}</h1>
+            <p>title    : {{product.title}}</p>
+            <p>price    : {{product.price}}</p>
+            <p>quantity : {{product.quantity}}</p>
+            <p>likes    : {{product.like}}</p>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!product">
+    <p>Product with id {{idParam}} does not exist</p>
+</ng-container>
