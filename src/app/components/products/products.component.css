@@ -1,0 +1,9 @@
+p {
+  text-align: center;
+  background-color: cadetblue;
+  height: 50px;
+  padding: 10px 0px;
+}
+[type="button"] {
+  margin-left: 10px;
+}

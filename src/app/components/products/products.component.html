@@ -30,14 +30,14 @@
               type="button"
               class="btn btn-success"
               [disabled]="record.quantity === 0"
-              (click)="dec(record.id)"
+              (click)="buyProduct(record)"
             >
               Buy
             </button>
             <button
               type="button"
               class="btn btn-primary"
-              (click)="inc(record.id)"
+              (click)="likeProduct(record)"
             >
               Like
             </button>
@@ -48,6 +48,13 @@
             >
               Details
             </a>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="addFiveItems(record)"
+            >
+              Add 5
+            </button>
           </td>
         </ng-container>
       </tr>
